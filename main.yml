@@ -1,0 +1,7 @@
+---
+- hosts: db-mongodb
+  become: yes
+  roles:
+  # - install-mongodb-org
+  - project.provision.mongodb
+
