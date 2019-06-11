@@ -1,0 +1,6 @@
+
+hosts
+.terraform/plugins/linux_amd64/lock.json
+.terraform/plugins/linux_amd64/terraform-provider-digitalocean_v1.4.0_x4
+terraform.tfstate.backup
+terraform.tfstate
