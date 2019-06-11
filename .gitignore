@@ -4,3 +4,4 @@ hosts
 .terraform/plugins/linux_amd64/terraform-provider-digitalocean_v1.4.0_x4
 terraform.tfstate.backup
 terraform.tfstate
+roles/project.provision.mongodb/templates/mongodb-key

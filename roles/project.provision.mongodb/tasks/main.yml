@@ -1,0 +1,51 @@
+---
+# tasks file for project.provision.mongodb
+- name: Install mongodb
+  apt:
+    name: mongodb-org
+    state: present
+    allow_unauthenticated: yes
+
+- name: Create systemd service file
+  template:
+    src: mongod.service
+    dest: /etc/systemd/system/mongodb.service
+
+- name: Enable Mongod service
+  command: systemctl enable mongodb.service
+  become: yes
+
+- name: Copy MongoDB configuration file
+  template:
+    src: mongod.conf
+    dest: /etc/mongod.conf
+
+# - name: Prepare authorization key file
+#   local_action: shell openssl rand -base64 756 > {{playbook_dir}}/roles/project.provision.mongodb/templates/mongodb-key
+
+# - name: Create mongodb home directory
+#   file:
+#     state: directory
+#     path: /home/mongodb
+#     owner: mongodb
+#     group: mongodb
+#     mode: 0755
+
+# - name: Copies key to both master and slaves
+#   copy:
+#     src: "{{playbook_dir}}/roles/project.provision.mongodb/templates/mongodb-key"
+#     dest: /home/mongodb/mongodb-key
+#     owner: mongodb
+#     group: mongodb
+#     mode: 0400
+
+# - name: Add key to mongodb configuration
+#   lineinfile:
+#     dest: /etc/mongod.conf
+#     state: present
+#     regexp: '#  keyFile:'
+#     line: '  keyFile: /home/mongodb/mongodb-key'
+#     backrefs: yes
+
+- name: Restart mongodb
+  command: systemctl restart mongodb.service
