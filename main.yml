@@ -2,6 +2,7 @@
 - hosts: db-mongodb
   become: yes
   roles:
-  # - install-mongodb-org
+  - install-mongodb-org
   - project.provision.mongodb
+  - ufw
 
