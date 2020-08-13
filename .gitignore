@@ -5,3 +5,6 @@ hosts
 terraform.tfstate.backup
 terraform.tfstate
 roles/project.provision.mongodb/templates/mongodb-key
+terrakey.pem
+terrakey.pub
+.terraform
